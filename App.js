@@ -24,13 +24,13 @@ class App extends Component {
     const { pageWillBeRendered } = this.state
 
     if (pageWillBeRendered === "get") {
-      return <GetPage />
+      return <GetPage backToMainPage={this.openOtherPage} />
     } else if (pageWillBeRendered === "post") {
-      return <PostPage />
+      return <PostPage backToMainPage={this.openOtherPage}  />
     } else if (pageWillBeRendered === "put") {
-      return <PutPage />
+      return <PutPage backToMainPage={this.openOtherPage}  />
     } else if (pageWillBeRendered === "delete") {
-      return <DeletePage />
+      return <DeletePage backToMainPage={this.openOtherPage}  />
     }
 
     return (
