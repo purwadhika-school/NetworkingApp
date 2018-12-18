@@ -34,7 +34,7 @@ class App extends Component {
     }
 
     return (
-      <View>
+      <View style={Styles.vw }>
         <Text>Networking App</Text>
 
         <TouchableOpacity onPress={() => this.openOtherPage("get")}>
