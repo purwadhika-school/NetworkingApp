@@ -4,6 +4,7 @@ import GetPage from "./src/GetPage"
 import PutPage from "./src/PutPage"
 import PostPage from "./src/PostPage"
 import DeletePage from "./src/DeletePage"
+import GetNotes from './src/GetNotes'
 
 class App extends Component {
   constructor(props) {
@@ -24,7 +25,8 @@ class App extends Component {
     const { pageWillBeRendered } = this.state
 
     if (pageWillBeRendered === "get") {
-      return <GetPage backToMainPage={this.openOtherPage} />
+      // return <GetPage backToMainPage={this.openOtherPage} />
+      return <GetNotes backToMainPage={this.openOtherPage} />
     } else if (pageWillBeRendered === "post") {
       return <PostPage backToMainPage={this.openOtherPage}  />
     } else if (pageWillBeRendered === "put") {
