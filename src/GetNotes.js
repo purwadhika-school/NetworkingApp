@@ -7,7 +7,7 @@ import {
   ActivityIndicator
 } from "react-native"
 import axios from "axios"
-import DetailNotes from './DetailNotes'
+import DetailNotes from "./DetailNotes"
 
 class GetNotes extends Component {
   constructor(props) {
@@ -16,7 +16,10 @@ class GetNotes extends Component {
     this.state = {
       dataNotes: [],
       isLoading: false,
-      pageYangHarusDirender: '' // Bad
+      pageYangHarusDirender: "", // Bad
+      notesId: 0,
+      notesTitle: "",
+      notesDescription: ""
     }
   }
 
@@ -33,11 +36,25 @@ class GetNotes extends Component {
       .catch(err => console.log(err))
   }
 
-  goAndBackToDetailPage = (page) => this.setState({ pageYangHarusDirender: page })
+  goAndBackToDetailPage = (page, idNotes, titleNotes, descriptionNotes) =>
+    this.setState({
+      pageYangHarusDirender: page,
+      notesId: idNotes,
+      notesDescription: descriptionNotes,
+      notesTitle: titleNotes
+    })
 
   render() {
-    if (this.state.pageYangHarusDirender === 'detail') {
-        return <DetailNotes goAndBackToDetailPage={this.goAndBackToDetailPage} />
+    const { notesId, notesTitle, notesDescription } = this.state
+    if (this.state.pageYangHarusDirender === "detail") {
+      return (
+        <DetailNotes
+          idNotes={notesId}
+          descriptionNotes={notesDescription}
+          titleNotes={notesTitle}
+          goAndBackToDetailPage={this.goAndBackToDetailPage}
+        />
+      )
     }
 
     return (
@@ -64,7 +81,16 @@ class GetNotes extends Component {
                 margin: 10
               }}
             >
-              <TouchableOpacity onPress={ () => this.goAndBackToDetailPage('detail') }>
+              <TouchableOpacity
+                onPress={() =>
+                  this.goAndBackToDetailPage(
+                    "detail",
+                    item.id,
+                    item.title,
+                    item.description
+                  )
+                }
+              >
                 <Text style={{ margin: 10 }}>{item.title}</Text>
               </TouchableOpacity>
             </View>

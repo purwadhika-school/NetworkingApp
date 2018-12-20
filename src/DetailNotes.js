@@ -5,10 +5,10 @@ class DetailNotes extends Component {
   render() {
     return (
       <View>
-        <Text>ID: </Text>
-        <Text>Title: </Text>
-        <Text>Description: </Text>
-
+        <Text>ID: {this.props.idNotes}</Text>
+        <Text>Title: {this.props.titleNotes} </Text>
+        <Text>Description: {this.props.descriptionNotes} </Text>
+        
         <View style={{ justifyContent: "space-evenly", marginTop: 10 }}>
           <TouchableOpacity style={{ backgroundColor: "green" }}>
             <Text style={{ margin: 5 }}>Edit</Text>
