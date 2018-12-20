@@ -8,29 +8,42 @@ class GetPage extends Component {
 
     this.state = {
       name: "",
-      isLoading: false
+      isLoading: false,
+      hairColor: '',
+      gender: '',
+      height: ''
     }
   }
 
   getStarWarsData = () => {
     this.setState({ isLoading: true })
     const url = "https://swapi.co/api/people/1/"
-    axios
-      .get(url)
+    axios.get(url)
       .then(response => {
         console.log(response)
-        this.setState({ name: response.data.name, isLoading: false })
+        this.setState({ 
+          name: response.data.name, 
+          hairColor: response.data.hair_color,
+          gender: response.data.gender,
+          height: response.data.height,
+          isLoading: false })
       })
       .catch(error => console.log(error))
   }
 
   render() {
-    const { name, isLoading } = this.state
+    const { name, isLoading, hairColor, gender, height } = this.state
     return (
       <View style={{ flex: 1, justifyContent: "center" }}>
         {isLoading && <ActivityIndicator size="large" />}
         <Text>Get Page</Text>
+        
         <Text>Name: {name}</Text>
+        
+        <Text>Hair Color: {hairColor}</Text>
+        <Text>Gender: {gender}</Text>
+        <Text>Height: {height}</Text>
+
         <TouchableOpacity onPress={() => this.getStarWarsData()}>
           <Text style={{ margin: 10, backgroundColor: "green" }}>
             Get Star Wars Data
