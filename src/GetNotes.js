@@ -7,6 +7,7 @@ import {
   ActivityIndicator
 } from "react-native"
 import axios from "axios"
+import DetailNotes from './DetailNotes'
 
 class GetNotes extends Component {
   constructor(props) {
@@ -14,7 +15,8 @@ class GetNotes extends Component {
 
     this.state = {
       dataNotes: [],
-      isLoading: false
+      isLoading: false,
+      pageYangHarusDirender: '' // Bad
     }
   }
 
@@ -31,7 +33,13 @@ class GetNotes extends Component {
       .catch(err => console.log(err))
   }
 
+  goAndBackToDetailPage = (page) => this.setState({ pageYangHarusDirender: page })
+
   render() {
+    if (this.state.pageYangHarusDirender === 'detail') {
+        return <DetailNotes goAndBackToDetailPage={this.goAndBackToDetailPage} />
+    }
+
     return (
       <View>
         {this.state.isLoading && <ActivityIndicator size="large" />}
@@ -56,7 +64,7 @@ class GetNotes extends Component {
                 margin: 10
               }}
             >
-              <TouchableOpacity onPress={ () => }>
+              <TouchableOpacity onPress={ () => this.goAndBackToDetailPage('detail') }>
                 <Text style={{ margin: 10 }}>{item.title}</Text>
               </TouchableOpacity>
             </View>

@@ -19,7 +19,9 @@ class DetailNotes extends Component {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={{ backgroundColor: "blue", marginTop: 5 }}>
+        <TouchableOpacity 
+            onPress={ () => this.props.goAndBackToDetailPage('get') }
+            style={{ backgroundColor: "blue", marginTop: 5 }}>
           <Text style={{ margin: 5 }}>Back to Main Page</Text>
         </TouchableOpacity>
       </View>
